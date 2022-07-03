@@ -8,7 +8,7 @@ int main()
     printf("Enter a number: ");
     scanf("%d", &n1);
     printf("Enter the character: ");
-    scanf("%c", &ch);
+    scanf(" %c", &ch);
 
     printf("Number = %d \t character = %c\n", n1, ch);
 
