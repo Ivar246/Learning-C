@@ -2,6 +2,8 @@
 #include<ncurses.h>
 #include<termios.h>
 
+
+
 static struct termios old, new;
 
 // initialize new terminal i/o settings
@@ -18,18 +20,27 @@ void resetTermios(void)
 {
     tcsetattr(0, TCSANOW, &old);
 }
-char getch_()
+char getch_(int echo){
+    char ch;
+    initTermios(echo);
+    ch = getchar();
+    resetTermios();
+    return ch;
+}
 
-char getch(void){
+char getch(){
     return getch_(0);
+}
+
+char getche(void){
+    return getch_(1);
 }
 
 int main()
 {
     char gender;
     printf("Enter your gender: ");
-    gender = getchar();
+    gender = getche();
     printf("your gender is ");
-    putchar(gender);
     return 0;
 }
